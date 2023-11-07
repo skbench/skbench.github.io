@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AES-Like Ciphers</title>
+    <script src="jquery-3.7.0"> </script>
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.css" />
+    <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.js"></script>
+    <style>
+        .title{
+            color: black;
+            font-size: 30px;
+            text-align: left;
+        }
+        hr {
+            border: none;
+            border-top: 1px solid #000; /* Change the color and thickness as needed */
+            margin: 1; /* Adjust the margin as needed */
+        }
+        .subtitle{
+            color: black
+        }
+        .title, .subtitle{
+            font-family: 'Roboto', sans-serif;
+        }
+        .indented-section {
+            margin-left: 20px;
+        }
+
+        body {
+            width:100%;
+            background-color: lightblue; /* Light gray background */
+            margin: 0;
+            padding: 0;
+        }
+        .sidebar {
+            position: fixed;
+            left: 0;
+            margin-top: 20px;
+            width: 250px;
+            /* background-color: #333; */
+            color: #fff;
+            padding: 20px;
+            height: 100vh;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .sidebar img {
+            display: block; /* Ensures the image behaves as a block element */
+            margin: 0 auto; /* Centers the image horizontally within the sidebar */
+            padding-top: 0px; /* Adjust the padding as needed to create space at the top */
+            width:250px; /* Adjust the width of the image */
+        }
+
+        .sidebar ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .sidebar li {
+            margin-bottom: 10px;
+        }
+
+        .sidebar .sub-menu {
+            margin-top: 10px; /* Indent nested list */
+            margin-left: 10px; /* Indent nested list */
+        }
+
+        .content-wrapper {
+            margin-left: 300px;
+            padding: 20px;
+        }
+
+        /*CSS for table*/
+        table{
+            /* width: 100%; */
+            border-collapse: collapse;
+            border: 1px solid #000;
+            /* word-break:break-word; */
+            word-wrap:break-word;
+            /* table-layout: fixed; */
+        }
+
+        .data-table thead {
+            /* position: sticky; */
+            /* width=100%; */
+            top: 0;
+            background-color: rgb(58, 103, 114); 
+            /* z-index: 2;  */
+        }
+    </style>
+</head>
+<body>
+    <div class="sidebar">
+        <img src="NTU.png" alt="NTU Logo">
+    </div>
+
+    <div class="content-wrapper">
+        <h1 class="title">
+            <span>Implementation Details</span>
+        </h1>
+        <section id="Implementation">
+            <h2>1 Security Data</h2>
+            <div style="overflow-x: auto;" class="table-container">
+                <table class="data-table" id="aes-like">
+                    <thead>
+                        <tr style='border-top: 2px solid black;'>
+                            <!-- <tr> -->
+                            <th rowspan="2">Geo.</th> 
+                            <th rowspan="2">Key</th> 
+                            <th rowspan="2">MC</th> 
+                            <!-- <th rowspan="2">SR</th>  -->
+                            <th rowspan="2">Sbox</th> 
+                            <th rowspan="2">Full/Half</th> 
+                            <!-- <th rowspan="2">TK<br>Permutation</th>  -->
+                            <th rowspan="2">Rnds</th> 
+                            <th colspan="2" style="border-bottom: 1px solid;">SK model</th> 
+                            <th colspan="2" style="border-bottom: 1px solid;">TK1 model</th> 
+                            <th colspan="2" style="border-bottom: 1px solid;">TK2 model</th> 
+                            <th colspan="2" style="border-bottom: 1px solid;">TK3 model</th> 
+                            <th rowspan="2">Resource</th> 
+                        </tr>
+                        <!-- <tr style='border-bottom: 1.5px solid black;'> -->
+                            <tr>
+                            <!-- <th>Geo.</th>  -->
+                            <th>Sbox</th> 
+                            <th>Deg</th> 
+                            <th>Sbox</th> 
+                            <th>Deg</th> 
+                            <th>Sbox</th> 
+                            <th>Deg</th> 
+                            <th>Sbox</th> 
+                            <th>Deg</th> 
+                        </tr>
+                    </thead>
+
+                    <tbody>
+<tr><td>4*16</td><td>SK</td><td>SKINNY</td><td>(4,3,-2)</td><td>-</td><td>1</td><td>1</td><td>3</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td></td>
+<tr><td>4*16</td><td>SK</td><td>SKINNY</td><td>(4,3,-2)</td><td>-</td><td>2</td><td>2</td><td>9</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td></td>
+<tr><td>4*16</td><td>SK</td><td>SKINNY</td><td>(4,3,-2)</td><td>-</td><td>3</td><td>5</td><td>27</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td></td>
+<tr><td>4*16</td><td>SK</td><td>SKINNY</td><td>(4,3,-2)</td><td>-</td><td>4</td><td>8</td><td>81</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td></td>
+<tr><td>4*16</td><td>SK</td><td>SKINNY</td><td>(4,3,-2)</td><td>-</td><td>5</td><td>13</td><td>197</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td></td>
+<tr><td>4*16</td><td>SK</td><td>SKINNY</td><td>(4,3,-2)</td><td>-</td><td>6</td><td>20</td><td>236</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td></td>
+<tr><td>4*16</td><td>SK</td><td>SKINNY</td><td>(4,3,-2)</td><td>-</td><td>7</td><td>29</td><td>249</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td></td>
+<tr><td>4*16</td><td>SK</td><td>SKINNY</td><td>(4,3,-2)</td><td>-</td><td>8</td><td>42</td><td>253</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td></td>
+<tr><td>4*16</td><td>SK</td><td>SKINNY</td><td>(4,3,-2)</td><td>-</td><td>9</td><td>55</td><td>255</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td></td>
+<tr><td>4*16</td><td>SK</td><td>SKINNY</td><td>(4,3,-2)</td><td>-</td><td>10</td><td>74</td><td></td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td></td>
+                    </tbody>
+
+                    </table>
+                </div>
+        </section>
+
+        <section id="Implementation">
+            <h2>2 Implementation Data</h2>
+            <h5> SR Instance:</h2>
+<p> SR = (0,1,2,11) </p>
+            <h5> MC Instance: </h2>
+            <p> XXXMC </p>
+            <h5> Tweakey Schedule Permutation Instance: </h2>
+<p> TKP = - </p>
+            <h5> Sbox Instance: </h2>
+<p> Sbox = (4,3,-2) </p>
+        </section>
+    </div>
+</body>
+<script>
+    $(document).ready( function() {
+        $('#aes-like').dataTable(
+        );
+    } );
+</script>
+</html>
+
