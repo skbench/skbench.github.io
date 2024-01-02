@@ -1,5 +1,12 @@
 # Data display page
 
+### v 0.2 更新日志
+
+| task | complete time |
+| --- | --- |
+| 冻结表头 | 2024.1.2 |
+| 删除了表格排序的提示 | 2024.1.2 |
+
 ### v 0.1 更新日志
 
 | task | complete time |
