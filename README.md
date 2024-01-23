@@ -1,5 +1,11 @@
 # Data display page
 
+### v 0.3 更新日志
+| task | complete time |
+| --- | --- |
+| 对不同分辨率和缩放比例做了一定的适配 | 2024.1.23 |
+| 可添加对单一数据的reference | 2024.1.23 |
+
 ### v 0.2 更新日志
 
 | task | complete time |
